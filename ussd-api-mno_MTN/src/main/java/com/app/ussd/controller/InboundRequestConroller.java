@@ -19,7 +19,6 @@ public class InboundRequestConroller {
 	public InboundRequestConroller(ServiceManager manager) {	
 		this.manager = manager;
 	}
-
 	
 	@PostMapping("/")
 	public  String Inbound(@RequestBody String xmlRequest) {
