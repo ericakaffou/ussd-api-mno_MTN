@@ -2,8 +2,6 @@ package com.app.ussd.service;
 
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.List;
-import java.util.Optional;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.bind.JAXBContext;
@@ -11,7 +9,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
@@ -22,10 +19,6 @@ import com.app.ussd.model.mno_request.RequestPull;
 import com.app.ussd.model.mno_response.Freeflow;
 import com.app.ussd.model.mno_response.ResponseCleanUp;
 import com.app.ussd.model.mno_response.ResponsePull;
-import com.app.ussd.repository.UssdSessionRepository;
-
-import kong.unirest.HttpResponse;
-import kong.unirest.Unirest;
 
 @Service
 @Transactional
