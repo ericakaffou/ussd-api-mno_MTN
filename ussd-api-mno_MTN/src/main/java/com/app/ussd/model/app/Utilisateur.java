@@ -1,0 +1,47 @@
+package com.app.ussd.model.app;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+ 
+
+
+@Entity
+@Data
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+public class Utilisateur extends AbstractEntity {
+ 
+	    
+    private String username;
+
+    private String password;
+    
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "utilisateur_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+            )
+    private Set<Roles> roles;
+    
+    private boolean enabled;    
+    
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+    
+   
+ 
+    
+}
