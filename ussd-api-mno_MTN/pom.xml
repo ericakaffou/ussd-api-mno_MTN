@@ -98,12 +98,12 @@
 		
 		 <!-- End For unirest-->        
 		<!-- database drivers-->  
-	    <!-- mysql drivers-->         
-		 <dependency>
-        <groupId>mysql</groupId>
-        	<artifactId>mysql-connector-java</artifactId>
-        	<version>8.0.14</version>
-    	</dependency>
+	    <!-- mysql drivers -->         
+		<!--  <dependency> --> 
+        <!--  <groupId>mysql</groupId> --> 
+        <!-- 	<artifactId>mysql-connector-java</artifactId> --> 
+        <!-- 	<version>8.0.14</version> --> 
+    	<!--  </dependency> --> 
 		<!-- postgresql drivers-->  
 		<dependency>
 			<groupId>org.postgresql</groupId>
