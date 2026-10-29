@@ -18,8 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Mno extends AbstractEntity {
 	
-	private String mcc;
-	private String mnc;
+	
 	private String mnoName;
 	
 	// Relation with Country 
@@ -27,9 +26,7 @@ public class Mno extends AbstractEntity {
     @JoinColumn(name = "country_id")
     private Country country;
 	
-	// Relation with RouteMno 
-	@OneToMany(mappedBy = "mno") 
-	private List<RouteMno> routeMno;  
+	
 		 
 		 
 		

@@ -46,9 +46,9 @@ public class UssdService extends AbstractEntity {
     @OneToMany(mappedBy = "service") 
   	private List<UssdSession> ussdSession;
     
-    // Relation with RouteMNO 
+    //Relation with Covrage 
     @OneToMany(mappedBy = "service") 
-	private List<RouteMno> routeMno; 
+	private List<Covrage> listCovrage;    
     
  
 	

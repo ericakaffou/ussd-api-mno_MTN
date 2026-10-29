@@ -27,7 +27,17 @@
 
 
   mnoName et countryCode dans mnoService ???
-  hypothese : - j'ai deux mno intégrés ( mtn ci et mtn bn ) ayant la meme api 
+  
+  hypothese 1 : - j'ai deux mno intégrés ( mtn ci et mtn bn ) ayant la meme api 
               - 2 services ussd distincts ( en CI et au BN) les 2 avec le meme sc #122#
               - si j'ai une seule de app3 deployé comment identifer le menu à afficher ?????
                   dans la pullResquest xml il y a le msisdn dont les 3 premiers chiffre sont le countryCode !!!
+
+  hypothese 2: j'ai deux mno intégrés du meme pays ayant la meme api   ???
+                Meilleure solution : integrer les prefixes operateurs pour ensuite le gerer par code!!!
+
+
+                Solution actuelle : une autre instance de app3 pour gerer cela
+
+
+   Solution générale : Une instance de app3 par operateur (meme si meme api )
