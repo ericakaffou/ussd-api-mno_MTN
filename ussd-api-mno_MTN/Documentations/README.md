@@ -14,7 +14,7 @@
 
    callBackUrl : initialement j'avais le callbackurl dans routeMno car en cas de service forwarded vu que chaque mno à un model de donnée diffrent , on pourait avoir une url differente pour chaque MNO  (1)
 
-   mais maintenant l'app est structurée ne 3 parties , meme si le UssdService est forwarded , app3 ne traite pas le service , donc les requetes devront toujours etre transferées à l'app2 du service concerné.
+   mais maintenant l'app est structurée en 3 parties , meme si le UssdService est forwarded , app3 ne traite pas le service , donc les requetes devront toujours etre transferées à l'app2 du service concerné.
 
    du coup avoir le callBackurl dans Service est préferable!!!!  (2)
    ( pour ne pas tout remodeler , creer une new propriété app2Url dans UssdService)
@@ -23,7 +23,7 @@
 
    => choix : * avoir une proprieté app2Url  non null dans ussdService pour les service non forwarded
 
-              * garder callBackUrl dans RouteMno -> une url de callback par operateur à envoyé au client (third party) 
+              * garder callBackUrl dans RouteMno -> une url de callback par operateur à envoyé au client (third party)  ???
 
 
   mnoName et countryCode dans mnoService ???
