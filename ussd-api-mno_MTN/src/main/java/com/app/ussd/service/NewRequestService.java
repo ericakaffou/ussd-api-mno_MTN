@@ -1,10 +1,8 @@
 package com.app.ussd.service;
 
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import com.app.ussd.model.app.App2Data;
 import com.app.ussd.model.app.UssdService;
 import com.app.ussd.model.app.UssdSession;
@@ -16,14 +14,16 @@ public class NewRequestService {
      private final UssdSessionService sessionService;
 	 private final TransactionService transactionService;
      private final RoutingService routing; 
+      private final FormattageService formatage;
      @Value("${COUNTRYCODE_INDEX}")  
      private int CC_index;   
 
-    public NewRequestService(UssdSessionService sessionService, TransactionService transactionService,
+    public NewRequestService(UssdSessionService sessionService, TransactionService transactionService, FormattageService formatage,
             RoutingService routing) {
         this.sessionService = sessionService;
         this.transactionService = transactionService;
         this.routing = routing;
+        this.formatage = formatage;
     }
 
     public String newRequest( RequestPull request){
@@ -59,21 +59,23 @@ public class NewRequestService {
                     UssdSession session =  sessionService.save(request, optionalscService.get())  ;                  
 					transactionService.save(request,session ); 
 
-                    // ici Si le service est forwarded envoyer app2Data à l'url (serviceForwardedUrl)
-                    // Si le service n'est forwarded envoyer app2Data à l'url (app2Url)
-
+                    
                     // construction de app2Data
                     App2Data app2request = new App2Data();
 		 			app2request.setSession(session);
 		 			app2request.setParts(parts);
 		 			app2request.setNewSession(true);
 
-                            // ici on a recuperé le SubscriberInput dans le tableau parts
-                            // on doit maintenant identifier le service et recuperer l'url de son app2 associé
-                            // faire un test et retourner les part et après un autre pour le serviceId
+                    // verifier si le service (session.getService()) est forwarded ou non
+                    // ici Si le service est forwarded envoyer app2Data à l'url (serviceForwardedUrl)
+                    // Si le service n'est forwarded envoyer app2Data à l'url (app2Url) via App2ClientService
+                  
+                    
+                           
+                     // response = app2Client.toApp2(App2request);
+                    response = formatage.ResPullToXML(formatage.setResponse(request, response, true));  
+                           return response;
 
-                           String msg = request.getMsisdn().substring(0, CC_index);
-                           return msg;
     }
 
 }
