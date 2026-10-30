@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.app</groupId>
-	<artifactId>ussd-api-service</artifactId>
+	<artifactId>app3-main</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ussd-api-service</name>
 	<description>Backend End USSD</description>

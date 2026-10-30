@@ -23,7 +23,7 @@
 
    => choix : * avoir une proprieté app2Url  non null dans ussdService pour les service non forwarded
 
-              * garder callBackUrl dans RouteMno -> une url de callback par operateur à envoyé au client (third party)  ???
+              * avoir  serviceForwardedUrl  dans ussdService -> une url de callback  à envoyé au client 
 
 
   mnoName et countryCode dans mnoService ???
@@ -32,12 +32,22 @@
               - 2 services ussd distincts ( en CI et au BN) les 2 avec le meme sc #122#
               - si j'ai une seule de app3 deployé comment identifer le menu à afficher ?????
                   dans la pullResquest xml il y a le msisdn dont les 3 premiers chiffre sont le countryCode !!!
+                   ( on peut utiliser la meme app3)
 
   hypothese 2: j'ai deux mno intégrés du meme pays ayant la meme api   ???
-                Meilleure solution : integrer les prefixes operateurs pour ensuite le gerer par code!!!
+                 ( on peut utiliser la meme app3)
 
 
                 Solution actuelle : une autre instance de app3 pour gerer cela
 
 
-   Solution générale : Une instance de app3 par operateur (meme si meme api )
+   Solution générale : Une instance de app3 par operateur 
+
+
+
+   CountryCode : il faut recuperer le countrycode de la meme facon de les ussdString car :
+                 on peut tomber sur le cas ou nous somme connecté au groupe MTN , du coup la meme api peut servir plusieur pays.
+                 dans ce cas on ne pourra identifier le pays qu'en recuperant le countrycode du msisdn
+
+                 Version 1 : Le countryCode sera recuperé du msisdn ( 3 premiers caractères ; eventuellement parametrer cela dans les pRoperties)
+                 (cela ne change rien au fait de Une instance de app3 par operateur  )

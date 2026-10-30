@@ -11,11 +11,12 @@ import com.app.ussd.repository.ServiceCodeRepository;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
-public class ServiceRouting {
+public class RoutingService {
 	
 	private final ServiceCodeRepository scRepo;	
 	private final CovrageRepository  covrageRepo ;
-	public ServiceRouting(ServiceCodeRepository scRepo, CovrageRepository covrageRepo) {
+	
+	public RoutingService(ServiceCodeRepository scRepo, CovrageRepository covrageRepo) {
 		super();
 		this.scRepo = scRepo;
 		this.covrageRepo = covrageRepo;		
@@ -44,9 +45,9 @@ public class ServiceRouting {
 		}
 
 		// ici recuperer le service , verifie si dédicated 
-		//UssdService scService = otionalRouteMno.get().getService();
+		UssdService scService = optionalCovrage.get().getService();
 		
-		return null ;
+		return  Optional.of(scService);
 	}
 
 }
