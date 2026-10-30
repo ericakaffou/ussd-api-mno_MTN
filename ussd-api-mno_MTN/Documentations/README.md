@@ -51,3 +51,8 @@
 
                  Version 1 : Le countryCode sera recuperé du msisdn ( 3 premiers caractères ; eventuellement parametrer cela dans les pRoperties)
                  (cela ne change rien au fait de Une instance de app3 par operateur  )
+
+
+
+
+TODO : finaliser les services (NewRequestService , OldRequestService , PullRequestService ) . Faire la classe CleanRequestService
