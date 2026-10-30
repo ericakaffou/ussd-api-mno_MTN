@@ -18,6 +18,7 @@ public class MnoService {
 
 	public String ussdService(  String xmlRequest) {		
 		
+		String response = null;
 		 // premiere chose recuperer le type de request : pull or cleanup
 		Document xmlDocument =formattageService.parseText(xmlRequest);		  
 	    String type = xmlDocument.getElementsByTagName("request").item(0).getAttributes().getNamedItem("type").getNodeValue();  
@@ -26,12 +27,13 @@ public class MnoService {
 
 			return pullRequestService.pullRequest(type, xmlRequest);			
 		 }
-		else {
-			 /* instanciation sans injection de CleanRequestService pour ne pas injecter CleanRequestService meme dans le cas
-			d'un Pull */
-			CleanRequestService requestService = new CleanRequestService();
-			return requestService.cleanRequest(type, xmlRequest);
+
+		if(type.matches("cleanup")) { 
+			
+			return null;
 		}	
+
+		return response;
 		
 	}
 
