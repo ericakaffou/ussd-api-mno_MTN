@@ -45,22 +45,13 @@ public class PullRequestService {
 			 on recupere le menu generé , on le format puis on le renvoi
 			 */
 			 //New Session	
-			  if(request.getNewRequest().matches("1")) {
-                         
-				response = newRequestService.newRequest(request);
-
-			     }
-				// Old Session
-	    	  if(request.getNewRequest().matches("0")) {
-
-				 
+			  if(request.getNewRequest().matches("1")) {                         
+					response = newRequestService.newRequest(request);
 			    }
-
-			  
-
-
-
-
+				// Old Session
+	    	  if(request.getNewRequest().matches("0")) {                 
+					response = oldRequestService.oldRequest(request);				 
+			    }
 
 		return response;
 	}

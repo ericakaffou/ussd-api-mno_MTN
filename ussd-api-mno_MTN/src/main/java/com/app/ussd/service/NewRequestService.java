@@ -28,24 +28,24 @@ public class NewRequestService {
 
     public String newRequest( RequestPull request){
 
-                String response = null ;	
-				//Check if session Existe on DB	    
+            String response = null ;	
+			//Check if session Existe on DB	    
 			 Optional<UssdSession> optionalSession  = sessionService.findByUssdSessionId(request.getSessionId());	
 
-                        // Check if sessionId exist
-                            if(optionalSession.isPresent()) {
-                                response = "Session already exist";
-                                return response;
+                    // Check if sessionId exist
+                        if(optionalSession.isPresent()) {
+                            response = "Session already exist";
+                            return response;
+                        }
+                        String[] parts =null;
+                        String SubscriberInput = request.getSubscriberInput().replace("#", "");
+                    
+                    try {  /* Faire attention avec le parametre de delimitage ceci pourrait créer un soucis pour une syntaxe comme #100* */
+                        String delimiter = "\\*";
+                        parts = SubscriberInput.split(delimiter);                            
+                            }catch (Exception e) {
+                                e.printStackTrace();
                             }
-							String[] parts =null;
-                            String SubscriberInput = request.getSubscriberInput().replace("#", "");
-                        
-                        try {  /* Faire attention avec le parametre de delimitage ceci pourrait créer un soucis pour une syntaxe comme #100* */
-                            String delimiter = "\\*";
-                            parts = SubscriberInput.split(delimiter);                            
-                                }catch (Exception e) {
-                                    e.printStackTrace();
-                                }
                      
                     // ici on recupère le service et on pourra verifier si forwarded ou non
 					// si forwaded on devra recuperer les routeMno pour on les avait deja dans ServiceRouting
@@ -58,7 +58,6 @@ public class NewRequestService {
                     // enregistrement de la session et Transaction
                     UssdSession session =  sessionService.save(request, optionalscService.get())  ;                  
 					transactionService.save(request,session ); 
-
                     
                     // construction de app2Data
                     App2Data app2request = new App2Data();
@@ -69,12 +68,10 @@ public class NewRequestService {
                     // verifier si le service (session.getService()) est forwarded ou non
                     // ici Si le service est forwarded envoyer app2Data à l'url (serviceForwardedUrl)
                     // Si le service n'est forwarded envoyer app2Data à l'url (app2Url) via App2ClientService
-                  
-                    
-                           
+
                      // response = app2Client.toApp2(App2request);
                     response = formatage.ResPullToXML(formatage.setResponse(request, response, true));  
-                           return response;
+                    return response;
 
     }
 
