@@ -1,7 +1,6 @@
 # ussd-api-mno
 18/10/2026
      securisation de jwt :   
-
             -mettre en place un refresh token
             -externaliser le jwt-secret dans database.properties et renommer ce dernier
 19/10/2026
